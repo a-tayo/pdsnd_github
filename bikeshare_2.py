@@ -1,11 +1,11 @@
-import time
+from time import time, sleep
 import pandas as pd
 import numpy as np
 import os
 
-CITY_DATA = { 'chicago': 'chicago.csv',
-              'new york city': 'new_york_city.csv',
-              'washington': 'washington.csv' }
+CITY_DATA = { 'chicago': 'data/chicago.csv',
+              'new york': 'data/new_york_city.csv',
+              'washington': 'data/washington.csv' }
 months = 'January,February,March,April,May,June'.split(',')
 days = 'Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday'.split(',')
 
@@ -34,26 +34,20 @@ def get_filters(c = ''):
     while True:
         print()
         if not city or choice == 'yes':
-            print("Which US city would you like to explore?")
-            print("Available cities are Chicago, New York, Washington")
-            print()
-            city = input().lower()
+            city = input("\nWhich US city would you like to explore?\nAvailable cities are Chicago, New York, Washington\n").lower()
         
-        if city == 'new york':
-            city = 'new york city'
-        if city not in (list(CITY_DATA.keys())):
+        while city not in (list(CITY_DATA.keys())):
             print("No data available for {}".format(city.title()))
-        else:
-            print("Selected city is {}".format(city.title()))
-            print("Would you like to change your city? yes or press Enter to skip?")
-            choice = input().lower()
-            if choice == 'yes':
-                continue
-            break
+            city = input("\nAvailable cities are Chicago, New York, Washington\n").lower()
+
+        print("Selected city is {}".format(city.title()))
+        choice = input("Would you like to change your city? yes or press Enter to skip?").lower()
+        if choice == 'yes':
+            continue
+        break
 
     # get user input for month (all, january, february, ... , june)
-    print("Would you like to filter by month? yes or press Enter to skip")
-    f_mth = input().lower()
+    f_mth = input("\nWould you like to filter by month? yes or press Enter to skip\n").lower()
     if f_mth == 'yes':
         print("Which month?")
         print("Month can be one of {}".format(', '.join(months)))
@@ -67,8 +61,7 @@ def get_filters(c = ''):
     
 
     # get user input for day of week (all, monday, tuesday, ... sunday)
-    print("Would you like to filter by day? yes or press Enter to skip")
-    f_day = input().lower()
+    f_day = input("\nWould you like to filter by day? yes or press Enter to skip\n").lower()
     if f_day == 'yes':
         print("Which day?")
         print("Day can be one of {}".format(', '.join(days)))
@@ -116,7 +109,7 @@ def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
     print()
     print('\nCalculating The Most Frequent Times of Travel...\n')
-    start_time = time.time()
+    start_time = time()
 
     # display the most common month
     print("Most common month of travel is: {}".format(df['month'].mode().values[0]))
@@ -128,7 +121,7 @@ def time_stats(df):
     start_hour = df['Start Time'].dt.hour.mode().values[0]
     print("Most common start hour is the {} hour.\n".format(start_hour))
     
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (time() - start_time))
     print('-'*40)
 
 
@@ -136,7 +129,7 @@ def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
-    start_time = time.time()
+    start_time = time()
 
     # display most commonly used start station
     print('Most common start station is: {}'.format(df['Start Station'].mode().values[0]))
@@ -146,7 +139,7 @@ def station_stats(df):
 
     # display most frequent combination of start station and end station trip
     print('Most common trip (Start to End) is: {}'.format(df['Start_End'].mode().values[0]))
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (time() - start_time))
     print('-'*40)
 
 
@@ -154,7 +147,7 @@ def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
 
     print('\nCalculating Trip Duration...\n')
-    start_time = time.time()
+    start_time = time()
 
     # display total travel time
     print('Total travel time is: ', pd.to_timedelta(sum(df['Trip Duration']), unit='s'))
@@ -162,7 +155,7 @@ def trip_duration_stats(df):
     # display mean travel time
     print('Average travel time is: ',pd.to_timedelta(df['Trip Duration'].mean(), unit='s')) 
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (time() - start_time))
     print('-'*40)
 
 
@@ -170,7 +163,7 @@ def user_stats(df):
     """Displays statistics on bikeshare users."""
 
     print('\nCalculating User Stats...\n')
-    start_time = time.time()
+    start_time = time()
 
     # Display counts of user types
     print("User counts:")
@@ -189,7 +182,7 @@ def user_stats(df):
     else:
         print("Birth Year not specified.")
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (time() - start_time))
     print('-'*40)
 
 
@@ -211,7 +204,7 @@ def main():
             trip_duration_stats(df)
         if not input("\nPress Enter to view the next Statistics.."):
             user_stats(df)
-        time.sleep(2)
+        sleep(2)
         
         raw = input("\nWould like to view the raw data? Enter y or n\n")
         n = 0
