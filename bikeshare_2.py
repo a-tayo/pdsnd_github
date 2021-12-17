@@ -121,12 +121,6 @@ def time_stats(df):
     # display the most common month
     print("Most common month of travel is: {}".format(df['month'].mode().values[0]))
 
-#     times = 'Month,Day,Start Hour'.split(',')
-#     values = [df['month'].mode().values[0], 
-#               df['day'].mode().values[0], 
-#               df['Start Time'].dt.hour.mode().values[0]]
-#     print(pd.DataFrame(dict(zip(times, values)), index=[0]))
-
     # display the most common day of week
     print("Most common day of week is: {}".format(df['day'].mode().values[0]))
 
