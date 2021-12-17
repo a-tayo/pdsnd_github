@@ -5,7 +5,7 @@ Created on Thursday 17 December 2021
 US BikeShare Dataset Project
 
 ### Description
-Describe what your project is about and what it does
+This project provides an interactive solution in using descriptive statistics to explore the BikeShare dataset for three US cities (Chicago, New York and Washington).
 
 ### Files used
 Include the files used
