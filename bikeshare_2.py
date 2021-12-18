@@ -1,4 +1,4 @@
-import time
+from time import time
 import pandas as pd
 import numpy as np
 import os
@@ -116,7 +116,7 @@ def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
     print()
     print('\nCalculating The Most Frequent Times of Travel...\n')
-    start_time = time.time()
+    start_time = time()
 
     # display the most common month
     print("Most common month of travel is: {}".format(df['month'].mode().values[0]))
@@ -134,7 +134,7 @@ def time_stats(df):
     start_hour = df['Start Time'].dt.hour.mode().values[0]
     print("Most common start hour is the {} hour.\n".format(start_hour))
     
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (time() - start_time))
     print('-'*40)
 
 
@@ -142,7 +142,7 @@ def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
-    start_time = time.time()
+    start_time = time()
 
     # display most commonly used start station
     print('Most common start station is: {}'.format(df['Start Station'].mode().values[0]))
@@ -152,7 +152,7 @@ def station_stats(df):
 
     # display most frequent combination of start station and end station trip
     print('Most common trip (Start to End) is: {}'.format(df['Start_End'].mode().values[0]))
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (time() - start_time))
     print('-'*40)
 
 
@@ -160,7 +160,7 @@ def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
 
     print('\nCalculating Trip Duration...\n')
-    start_time = time.time()
+    start_time = time()
 
     # display total travel time
     print('Total travel time is: ', pd.to_timedelta(sum(df['Trip Duration']), unit='s'))
@@ -168,7 +168,7 @@ def trip_duration_stats(df):
     # display mean travel time
     print('Average travel time is: ',pd.to_timedelta(df['Trip Duration'].mean(), unit='s')) 
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (time() - start_time))
     print('-'*40)
 
 
@@ -176,7 +176,7 @@ def user_stats(df):
     """Displays statistics on bikeshare users."""
 
     print('\nCalculating User Stats...\n')
-    start_time = time.time()
+    start_time = time()
 
     # Display counts of user types
     print("User counts:")
@@ -195,7 +195,7 @@ def user_stats(df):
     else:
         print("Birth Year not specified.")
 
-    print("\nThis took %s seconds." % (time.time() - start_time))
+    print("\nThis took %s seconds." % (time() - start_time))
     print('-'*40)
 
 
