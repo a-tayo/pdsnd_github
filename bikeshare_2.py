@@ -34,10 +34,7 @@ def get_filters(c = ''):
     while True:
         print()
         if not city or choice == 'yes':
-            print("Which US city would you like to explore?")
-            print("Available cities are Chicago, New York, Washington")
-            print()
-            city = input().lower()
+            city = input("\nWhich US city would you like to explore?\nAvailable cities are Chicago, New York, Washington\n").lower()
         
         if city == 'new york':
             city = 'new york city'
@@ -45,15 +42,13 @@ def get_filters(c = ''):
             print("No data available for {}".format(city.title()))
         else:
             print("Selected city is {}".format(city.title()))
-            print("Would you like to change your city? yes or press Enter to skip?")
-            choice = input().lower()
+            choice = input("Would you like to change your city? yes or press Enter to skip?").lower()
             if choice == 'yes':
                 continue
             break
 
     # get user input for month (all, january, february, ... , june)
-    print("Would you like to filter by month? yes or press Enter to skip")
-    f_mth = input().lower()
+    f_mth = input("\nWould you like to filter by month? yes or press Enter to skip\n").lower()
     if f_mth == 'yes':
         print("Which month?")
         print("Month can be one of {}".format(', '.join(months)))
@@ -67,8 +62,7 @@ def get_filters(c = ''):
     
 
     # get user input for day of week (all, monday, tuesday, ... sunday)
-    print("Would you like to filter by day? yes or press Enter to skip")
-    f_day = input().lower()
+    f_day = input("\nWould you like to filter by day? yes or press Enter to skip\n").lower()
     if f_day == 'yes':
         print("Which day?")
         print("Day can be one of {}".format(', '.join(days)))
