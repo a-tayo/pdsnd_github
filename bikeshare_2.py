@@ -4,7 +4,7 @@ import numpy as np
 import os
 
 CITY_DATA = { 'chicago': 'data/chicago.csv',
-              'new york city': 'data/new_york_city.csv',
+              'new york': 'data/new_york_city.csv',
               'washington': 'data/washington.csv' }
 months = 'January,February,March,April,May,June'.split(',')
 days = 'Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday'.split(',')
@@ -36,16 +36,15 @@ def get_filters(c = ''):
         if not city or choice == 'yes':
             city = input("\nWhich US city would you like to explore?\nAvailable cities are Chicago, New York, Washington\n").lower()
         
-        if city == 'new york':
-            city = 'new york city'
-        if city not in (list(CITY_DATA.keys())):
+        while city not in (list(CITY_DATA.keys())):
             print("No data available for {}".format(city.title()))
-        else:
-            print("Selected city is {}".format(city.title()))
-            choice = input("Would you like to change your city? yes or press Enter to skip?").lower()
-            if choice == 'yes':
-                continue
-            break
+            city = input("\nAvailable cities are Chicago, New York, Washington\n").lower()
+
+        print("Selected city is {}".format(city.title()))
+        choice = input("Would you like to change your city? yes or press Enter to skip?").lower()
+        if choice == 'yes':
+            continue
+        break
 
     # get user input for month (all, january, february, ... , june)
     f_mth = input("\nWould you like to filter by month? yes or press Enter to skip\n").lower()
