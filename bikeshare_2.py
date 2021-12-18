@@ -1,11 +1,11 @@
-from time import time
+from time import time, sleep
 import pandas as pd
 import numpy as np
 import os
 
-CITY_DATA = { 'chicago': 'chicago.csv',
-              'new york city': 'new_york_city.csv',
-              'washington': 'washington.csv' }
+CITY_DATA = { 'chicago': 'data/chicago.csv',
+              'new york city': 'data/new_york_city.csv',
+              'washington': 'data/washington.csv' }
 months = 'January,February,March,April,May,June'.split(',')
 days = 'Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday'.split(',')
 
@@ -217,7 +217,7 @@ def main():
             trip_duration_stats(df)
         if not input("\nPress Enter to view the next Statistics.."):
             user_stats(df)
-        time.sleep(2)
+        sleep(2)
         
         raw = input("\nWould like to view the raw data? Enter y or n\n")
         n = 0
